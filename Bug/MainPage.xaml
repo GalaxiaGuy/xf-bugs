@@ -4,20 +4,84 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Bug"
     x:Name="Page"
-    x:Class="Bug.MainPage">
-        
-    <CollectionView
-        Grid.Row="1"
-        ItemsSource="{Binding Items, Source={RelativeSource AncestorType={x:Type local:MainPage}}}">
-        <CollectionView.ItemsLayout>
-            <GridItemsLayout
-                Orientation="Vertical"
-                Span="{Binding Span, Source={RelativeSource AncestorType={x:Type local:MainPage}}}" />
-        </CollectionView.ItemsLayout>
-        <CollectionView.ItemTemplate>
-            <DataTemplate>
-                <Label Text="{Binding .}" />
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    x:Class="Bug.MainPage"
+    Padding="32">
+    <Grid>
+        <CollectionView
+            Grid.Row="0"
+            ItemsSource="{Binding Items, Source={RelativeSource AncestorType={x:Type local:MainPage}}}">
+            <CollectionView.Header>
+                <Label
+                    BackgroundColor="{Binding HeaderColor, Source={RelativeSource AncestorType={x:Type local:MainPage}}}"
+                    Text="RelativeSource - Direct binding" />
+            </CollectionView.Header>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    Orientation="Vertical"
+                    Span="2" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding .}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <CollectionView
+            Grid.Row="1"
+            ItemsSource="{Binding Items, Source={x:Reference Page}}">
+            <CollectionView.Header>
+                <Label
+                    BackgroundColor="{Binding HeaderColor, Source={x:Reference Page}}"
+                    Text="x:Reference - Direct binding" />
+            </CollectionView.Header>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    Orientation="Vertical"
+                    Span="{Binding Span, Source={x:Reference Page}}" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding .}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <CollectionView
+            Grid.Row="2"
+            ItemsSource="{Binding Indirect.Items, Source={RelativeSource AncestorType={x:Type local:MainPage}}}">
+            <CollectionView.Header>
+                <Label
+                    BackgroundColor="{Binding Indirect.HeaderColor, Source={RelativeSource AncestorType={x:Type local:MainPage}}}"
+                    Text="RelativeSource - Two part binding" />
+            </CollectionView.Header>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    Orientation="Vertical"
+                    Span="2" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding .}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <CollectionView
+            Grid.Row="3"
+            ItemsSource="{Binding Indirect.Items, Source={x:Reference Page}}">
+            <CollectionView.Header>
+                <Label
+                    BackgroundColor="{Binding Indirect.HeaderColor, Source={x:Reference Page}}"
+                    Text="x:Reference - Two part binding" />
+            </CollectionView.Header>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    Orientation="Vertical"
+                    Span="{Binding Indirect.Span, Source={x:Reference Page}}" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding .}" />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>
