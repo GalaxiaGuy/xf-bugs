@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Bug" x:Class="Bug.MainPage">
     <StackLayout>
-        <CollectionView ItemsSource="{Binding Tracked}">
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical" Span="2" />
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Orientation="Horizontal" Padding="8">
-                        <Label Text="{Binding Key}" HorizontalOptions="FillAndExpand"/>
-                        <Label Text="{Binding Value}" />
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        <Label Text="{Binding Bytes, StringFormat='{0:n0}'}" HorizontalOptions="CenterAndExpand" />
-        <Button Text="Push Empty Page" Clicked="EmptyPageButton_Clicked" />
-        <Button Text="Push Effect Page" Clicked="EffectPageButton_Clicked" />
-        <Button Text="Push CollectionView Effect Page" Clicked="CollectionViewEffectPageButton_Clicked" />
         <Button Text="Push CollectionView Grid Page" Clicked="CollectionViewGridPageButton_Clicked" />
     </StackLayout>
 </ContentPage>

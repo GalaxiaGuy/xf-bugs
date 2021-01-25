@@ -53,8 +53,23 @@ namespace Bug
         }
     }
 
-    public class LoadableItem : ILoadable
+    public class LoadableItem
     {
         public bool IsLoaded { get; set; }
+    }
+
+    public class LoadingDataTemplateSelector : DataTemplateSelector
+    {
+        public DataTemplate LoadingTemplate { get; set; }
+        public DataTemplate DefaultTemplate { get; set; }
+
+        protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
+        {
+            return item switch
+            {
+                LoadableItem { IsLoaded: true } => DefaultTemplate,
+                _ => LoadingTemplate,
+            };
+        }
     }
 }
