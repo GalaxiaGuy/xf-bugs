@@ -8,20 +8,20 @@ using Xamarin.Forms;
 
 namespace Bug
 {
-    public partial class CollectionViewGridPage : ContentPage
+    public partial class CollectionViewGridPageObservableCollection : ContentPage
     {
-        public CollectionViewGridPage()
+        public CollectionViewGridPageObservableCollection()
         {
             InitializeComponent();
-            BindingContext = new CollectionViewGridViewModel();
+            BindingContext = new CollectionViewGridViewModelObservableCollection();
         }
     }
 
-    public class CollectionViewGridViewModel
+    public class CollectionViewGridViewModelObservableCollection
     {
-        public ObservableRangeCollection<LoadableItem> Items { get; set; }
+        public ObservableCollection<LoadableItem> Items { get; set; }
 
-        public CollectionViewGridViewModel()
+        public CollectionViewGridViewModelObservableCollection()
         {
             Items = new ObservableRangeCollection<LoadableItem>
             {
@@ -57,7 +57,7 @@ namespace Bug
         {
             await Task.Delay(100);
             var newItems = new List<LoadableItem>();
-            for (int i=0; i< 24; i++)
+            for (int i = 0; i < 24; i++)
             {
                 newItems.Add(new LoadableItem { IsLoaded = true, Name = i.ToString() });
             }
@@ -67,24 +67,22 @@ namespace Bug
         }
     }
 
-    public class LoadableItem
+    public static class Extensions
     {
-        public bool IsLoaded { get; set; }
-        public string Name { get; set; }
-    }
-
-    public class LoadingDataTemplateSelector : DataTemplateSelector
-    {
-        public DataTemplate LoadingTemplate { get; set; }
-        public DataTemplate DefaultTemplate { get; set; }
-
-        protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
+        public static void AddRange<T>(this ObservableCollection<T> collection, IList<T> items)
         {
-            return item switch
+            foreach(var item in items)
             {
-                LoadableItem { IsLoaded: true } => DefaultTemplate,
-                _ => LoadingTemplate,
-            };
+                collection.Add(item);
+            }
+        }
+
+        public static void RemoveRange<T>(this ObservableCollection<T> collection, IList<T> items)
+        {
+            foreach (var item in items)
+            {
+                collection.Remove(item);
+            }
         }
     }
 }

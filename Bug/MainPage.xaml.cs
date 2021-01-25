@@ -14,5 +14,10 @@ namespace Bug
         {
             await Navigation.PushAsync(new CollectionViewGridPage());
         }
+
+        private async void CollectionViewGridPageObservableCollectionButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CollectionViewGridPageObservableCollection());
+        }
     }
 }
