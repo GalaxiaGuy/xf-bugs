@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Bug
@@ -12,6 +8,27 @@ namespace Bug
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = ObjectCounter.Instance;
+        }
+
+        private async void EmptyPageButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EmptyPage());
+        }
+
+        private async void EffectPageButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EffectPage());
+        }
+
+        private async void CollectionViewEffectPageButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CollectionViewEffectPage());
+        }
+
+        private async void CollectionViewGridPageButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CollectionViewGridPage());
         }
     }
 }
