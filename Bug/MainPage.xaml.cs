@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Bug
@@ -7,17 +9,33 @@ namespace Bug
     {
         public MainPage()
         {
+            BindingContext = new MainPageViewModel();
             InitializeComponent();
         }
+    }
 
-        private async void CollectionViewGridPageButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new CollectionViewGridPage());
-        }
+    public class MainPageViewModel
+    {
+        public List<string> Urls { get; }
 
-        private async void CollectionViewGridPageObservableCollectionButton_Clicked(object sender, EventArgs e)
+        public MainPageViewModel()
         {
-            await Navigation.PushAsync(new CollectionViewGridPageObservableCollection());
+            var rand = new Random();
+            Urls = new List<string>
+            {
+                $"https://www.fujifilm.com/products/digital_cameras/x/fujifilm_x_t1/sample_images/img/index/ff_x_t1_001.JPG?r={rand.Next()}",
+                $"https://www.fujifilm.com/products/digital_cameras/x/fujifilm_x_t1/sample_images/img/index/ff_x_t1_002.JPG?r={rand.Next()}",
+                $"https://www.fujifilm.com/products/digital_cameras/x/fujifilm_x_t1/sample_images/img/index/ff_x_t1_003.JPG?r={rand.Next()}",
+                $"https://www.fujifilm.com/products/digital_cameras/x/fujifilm_x_t1/sample_images/img/index/ff_x_t1_001.JPG?r={rand.Next()}",
+                $"https://www.fujifilm.com/products/digital_cameras/x/fujifilm_x_t1/sample_images/img/index/ff_x_t1_002.JPG?r={rand.Next()}",
+                $"https://www.fujifilm.com/products/digital_cameras/x/fujifilm_x_t1/sample_images/img/index/ff_x_t1_003.JPG?r={rand.Next()}",
+                $"https://www.fujifilm.com/products/digital_cameras/x/fujifilm_x_t1/sample_images/img/index/ff_x_t1_001.JPG?r={rand.Next()}",
+                $"https://www.fujifilm.com/products/digital_cameras/x/fujifilm_x_t1/sample_images/img/index/ff_x_t1_002.JPG?r={rand.Next()}",
+                $"https://www.fujifilm.com/products/digital_cameras/x/fujifilm_x_t1/sample_images/img/index/ff_x_t1_003.JPG?r={rand.Next()}",
+                $"https://www.fujifilm.com/products/digital_cameras/x/fujifilm_x_t1/sample_images/img/index/ff_x_t1_001.JPG?r={rand.Next()}",
+                $"https://www.fujifilm.com/products/digital_cameras/x/fujifilm_x_t1/sample_images/img/index/ff_x_t1_002.JPG?r={rand.Next()}",
+                $"https://www.fujifilm.com/products/digital_cameras/x/fujifilm_x_t1/sample_images/img/index/ff_x_t1_003.JPG?r={rand.Next()}",
+            };
         }
     }
 }
