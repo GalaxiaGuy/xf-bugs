@@ -50,6 +50,8 @@ namespace Bug.iOS
                 _mainPageViewController.View.Frame = View.Frame;
 
                 AddChild(_mainPageViewController);
+
+                View.BackgroundColor = UIColor.Green;
             }
 
             private void AddChild(UIViewController childViewcontroller)
@@ -78,6 +80,11 @@ namespace Bug.iOS
                     AddChild(_mainPageViewController);
                 });
                 base.ViewWillTransitionToSize(toSize, coordinator);
+            }
+
+            public override void ViewDidAppear(bool animated)
+            {
+                base.ViewDidAppear(animated);
             }
         }
     }
