@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using CoreGraphics;
 using Foundation;
 using UIKit;
+using Xamarin.Forms.Platform.iOS;
 
 namespace Bug.iOS
 {
@@ -11,8 +12,10 @@ namespace Bug.iOS
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
     [Register("AppDelegate")]
-    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
+    public class AppDelegate : UIApplicationDelegate
     {
+        private UIWindow _window;
+
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
         // method you should instantiate the window, load the UI into it and then make the window
@@ -22,10 +25,60 @@ namespace Bug.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            //LoadApplication(new App());
 
-            return base.FinishedLaunching(app, options);
+            _window = new UIWindow(UIScreen.MainScreen.Bounds);
+            var viewController = new TestViewController();
+            viewController.SetupMainPage();
+            _window.RootViewController = viewController;
+            _window.MakeKeyAndVisible();
+
+            return true;
+        }
+
+        public class TestViewController : UIViewController
+        {
+            private UIViewController _mainPageViewController;
+
+            public void SetupMainPage()
+            {
+                global::Xamarin.Forms.Forms.Init();
+
+                var mainPage = new MainPage();
+                _mainPageViewController = mainPage.CreateViewController();
+
+                _mainPageViewController.View.Frame = View.Frame;
+
+                AddChild(_mainPageViewController);
+            }
+
+            private void AddChild(UIViewController childViewcontroller)
+            {
+                childViewcontroller.WillMoveToParentViewController(this);
+                AddChildViewController(childViewcontroller);
+                View.AddSubview(childViewcontroller.View);
+                childViewcontroller.DidMoveToParentViewController(this);
+            }
+
+            private void RemoveChild(UIViewController childViewcontroller)
+            {
+                childViewcontroller.WillMoveToParentViewController(null);
+                childViewcontroller.View.RemoveFromSuperview();
+                childViewcontroller.RemoveFromParentViewController();
+                childViewcontroller.DidMoveToParentViewController(null);
+            }
+
+            public override void ViewWillTransitionToSize(CGSize toSize, IUIViewControllerTransitionCoordinator coordinator)
+            {
+                coordinator.AnimateAlongsideTransition(_ =>
+                {
+                    RemoveChild(_mainPageViewController);
+                }, _ =>
+                {
+                    AddChild(_mainPageViewController);
+                });
+                base.ViewWillTransitionToSize(toSize, coordinator);
+            }
         }
     }
 }

@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Bug" x:Class="Bug.MainPage">
-    <CollectionView ItemsSource="{Binding Urls}" ItemSizingStrategy="MeasureFirstItem">
+    <CollectionView ItemsSource="{Binding Labels}" ItemSizingStrategy="MeasureFirstItem">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout
+                x:Name="GridLayout"
+                Span="2"
+                Orientation="Vertical"/>
+        </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout>
-                    <Image Source="{Binding .}" HeightRequest="300"/>
-                    <Label Text="{Binding .}" />
+                    <Label Text="{Binding .}" HeightRequest="300"/>
                 </StackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>
