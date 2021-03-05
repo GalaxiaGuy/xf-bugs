@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Bug" x:Class="Bug.MainPage">
-    <StackLayout>
-        <Button Text="Push CollectionView Grid Page" Clicked="CollectionViewGridPageButton_Clicked" />
-    </StackLayout>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Bug"
+             x:Class="Bug.MainPage"
+             BackgroundColor="Red">
+    <CollectionView ItemsSource="{Binding Labels}" ItemSizingStrategy="MeasureFirstItem" BackgroundColor="Transparent" Margin="0,0,0,0" >
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout
+                x:Name="GridLayout"
+                Span="3"
+                HorizontalItemSpacing="0"
+                Orientation="Vertical"/>
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout BackgroundColor="White">
+                    <Label Text="{Binding .}" HeightRequest="300"/>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>
