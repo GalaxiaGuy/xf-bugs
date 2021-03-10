@@ -1,0 +1,5 @@
+module AkamaiBMP {
+	umbrella header "CYFMonitor.h"
+    export *
+}
+

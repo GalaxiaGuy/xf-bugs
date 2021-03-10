@@ -150,11 +150,14 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="AkamaiBMP">
+      <HintPath>..\AkamaiBMP.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1874" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.CommunityToolkit">
-      <Version>1.0.2</Version>
+      <Version>1.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
@@ -162,6 +165,10 @@
     <ProjectReference Include="..\Bug\Bug.csproj">
       <Project>{E9C183BF-0BD2-4800-B38E-FFA3D5D8DAFE}</Project>
       <Name>Bug</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AkamaiBMPiOS310\AkamaiBMPiOS310.csproj">
+      <Project>{DBFC6C58-CDD6-43EA-A4C3-559C6E1D95BD}</Project>
+      <Name>AkamaiBMPiOS310</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
