@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Bug" x:Class="Bug.MainPage">
-    <StackLayout>
-        <Button Text="Push CollectionView Grid Page" Clicked="CollectionViewGridPageButton_Clicked" />
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:bug="clr-namespace:Bug"
+             x:Class="Bug.MainPage"
+             x:DataType="bug:MainViewModel"
+             BackgroundColor="{Binding CurrentColor}"
+             NavigationPage.HasNavigationBar="False"
+             Padding="0,40">
+    <StackLayout BindableLayout.ItemsSource="{Binding Colors}">
+        <BindableLayout.ItemTemplate>
+            <DataTemplate x:DataType="Color">
+                <Button
+                    BackgroundColor="{Binding}"
+                    HeightRequest="50"
+                    Text="Open Browser"
+                    TextColor="White"
+                    CommandParameter="{Binding}"
+                    Command="{Binding TapCommand, Source={RelativeSource AncestorType={x:Type bug:MainViewModel}}}" />
+            </DataTemplate>
+        </BindableLayout.ItemTemplate>
     </StackLayout>
 </ContentPage>
