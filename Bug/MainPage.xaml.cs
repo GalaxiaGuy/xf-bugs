@@ -8,11 +8,12 @@ namespace Bug
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = new MainViewModel();
         }
+    }
 
-        private async void CollectionViewGridPageButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new CollectionViewGridPage());
-        }
+    public class MainViewModel
+    {
+
     }
 }
