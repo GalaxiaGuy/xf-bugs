@@ -1,7 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Bug" x:Class="Bug.MainPage">
+             xmlns:bug="clr-namespace:Bug" x:Class="Bug.MainPage"
+             x:DataType="bug:MainViewModel"
+             x:Name="Root">
     <StackLayout>
+        <StackLayout BindableLayout.ItemsSource="{Binding Items}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="bug:Item">
+                    <Label Text="{Binding Title}">
+                        <Label.Effects>
+                            <bug:AccessibilityRoutingEffect />
+                        </Label.Effects>
+                        <bug:Accessibility.CustomActions>
+                            <bug:CustomAction
+                                Text="Lengthen title"
+                                Command="{Binding BindingContext.LengthenTitleCommand, Source={x:Reference Root}}"
+                                CommandParameter="{Binding}" />
+                            <bug:CustomAction
+                                Text="Shorten title"
+                                Command="{Binding ShortenTitleCommand, Source={RelativeSource AncestorType={x:Type bug:MainViewModel}}}"
+                                CommandParameter="{Binding}" />
+                        </bug:Accessibility.CustomActions>
+                    </Label>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+        <Button Clicked="Push_Clicked" Text="Push" />
+        <Button Clicked="Clean_Clicked" Text="Clean" />
+        <StackLayout BindableLayout.ItemsSource="{Binding Tracker.Items}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="{x:Null}">
+                    <Grid>
+                        <Label Text="{Binding Key}" />
+                        <Label Grid.Column="1" Text="{Binding Value.Count}" />
+                    </Grid>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
     </StackLayout>
 </ContentPage>
