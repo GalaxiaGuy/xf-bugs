@@ -24,16 +24,6 @@
             </BindableLayout.ItemTemplate>
         </StackLayout>
         <Button Clicked="Push_Clicked" Text="Push" />
-        <Button Clicked="Clean_Clicked" Text="Clean" />
-        <StackLayout BindableLayout.ItemsSource="{Binding Tracker.Items}">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate x:DataType="{x:Null}">
-                    <Grid>
-                        <Label Text="{Binding Key}" />
-                        <Label Grid.Column="1" Text="{Binding Value.Count}" />
-                    </Grid>
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </StackLayout>
+        <bug:ObjectTrackerView />
     </StackLayout>
 </ContentPage>

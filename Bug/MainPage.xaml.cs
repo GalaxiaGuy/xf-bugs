@@ -46,11 +46,6 @@ namespace Bug
         {
             await Navigation.PushAsync(new MainPage());
         }
-
-        private void Clean_Clicked(object sender, EventArgs e)
-        {
-            ((MainViewModel)BindingContext).Tracker.Clean();
-        }
     }
 
     public class MainViewModel
