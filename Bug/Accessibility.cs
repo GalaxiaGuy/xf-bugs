@@ -1,4 +1,5 @@
 ﻿using System.Collections.Specialized;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace Bug
@@ -16,8 +17,24 @@ namespace Bug
 
         private static object CreateCustomActionsCollection(BindableObject bindable)
         {
-            var collection = new XamlCollection<CustomAction>(bindable);
+            var collection = new XamlCollection<CustomAction>((Element)bindable);
+            collection.CollectionChanged += Collection_CollectionChanged;
             return collection;
+        }
+
+        private static void Collection_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (sender is XamlCollection<CustomAction> customActions)
+            {
+                if (customActions.Any())
+                {
+                    var owner = customActions.Owner;
+                    if (!owner.Effects.Any(x => x is AccessibilityRoutingEffect))
+                    {
+                        owner.Effects.Add(new AccessibilityRoutingEffect());
+                    }
+                }
+            }
         }
     }
 }

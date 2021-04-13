@@ -6,6 +6,7 @@ namespace Bug
     {
         public AccessibilityRoutingEffect() : base("Bug.Accessibility")
         {
+            ObjectTracker.Instance.Track("AccessibilityRoutingEffect", this);
         }
     }
 }

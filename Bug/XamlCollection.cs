@@ -8,9 +8,9 @@ namespace Bug
     public class XamlCollection<T> : ObservableCollection<T>
         where T : BindableObject
     {
-        public BindableObject Owner { get; }
+        public Element Owner { get; }
 
-        public XamlCollection(BindableObject bindable)
+        public XamlCollection(Element bindable)
         {
             ObjectTracker.Instance.Track("XamlCollection", this);
             Owner = bindable;

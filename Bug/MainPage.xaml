@@ -9,9 +9,6 @@
             <BindableLayout.ItemTemplate>
                 <DataTemplate x:DataType="bug:Item">
                     <Label Text="{Binding Title}">
-                        <Label.Effects>
-                            <bug:AccessibilityRoutingEffect />
-                        </Label.Effects>
                         <bug:Accessibility.CustomActions>
                             <bug:CustomAction
                                 Text="Lengthen title"
