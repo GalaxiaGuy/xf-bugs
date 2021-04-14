@@ -21,7 +21,7 @@ namespace Bug
         {
             foreach (var item in this)
             {
-                item.BindingContext = Owner?.BindingContext;
+                BindableObject.SetInheritedBindingContext(item, Owner?.BindingContext);
             }
         }
 
