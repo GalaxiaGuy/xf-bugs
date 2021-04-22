@@ -2,6 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Bug" x:Class="Bug.MainPage">
-    <StackLayout>
-    </StackLayout>
+    <Grid BindableLayout.ItemsSource="{Binding Items}">
+        <BindableLayout.ItemTemplate>
+            <DataTemplate>
+                <Label Text="{Binding Text}" Grid.Row="{Binding Y}" Grid.Column="{Binding X}" />
+            </DataTemplate>
+        </BindableLayout.ItemTemplate>
+    </Grid>
 </ContentPage>
