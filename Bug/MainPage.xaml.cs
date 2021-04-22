@@ -8,12 +8,21 @@ namespace Bug
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainViewModel();
+            BindingContext = new MainViewModel { FirstName = "John", LastName = "Doe" };
         }
     }
 
-    public class MainViewModel
+    public class MainViewModel : IMainViewModel
     {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string NotOnTheInterface { get; set; }
+    }
 
+    public interface IMainViewModel
+    {
+        string FirstName { get; }
+        string LastName { get; }
+        string FullName => $"{FirstName} {LastName}";
     }
 }
