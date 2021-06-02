@@ -20,6 +20,16 @@ namespace Bug.iOS
             _ = View;
         }
 
+        public void SetNonExportedView(UIView view)
+        {
+            NonExportedView = view;
+        }
+
+        public void SetExportedView(UIView view)
+        {
+            ExportedView = view;
+        }
+
         public bool CheckIfViewEqualsNull()
         {
             return View == null;
@@ -50,9 +60,19 @@ namespace Bug.iOS
             return ExportedView is null;
         }
 
+        public bool CheckIfNavigationControllerEqualsNull()
+        {
+            return NavigationController == null;
+        }
+
+        public bool CheckIfNavigationControllerIsNull()
+        {
+            return NavigationController is null;
+        }
+
         public bool CheckIfViewIsLoaded()
         {
-            return this.IsViewLoaded;
+            return IsViewLoaded;
         }
     }
 }

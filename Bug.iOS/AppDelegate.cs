@@ -44,12 +44,22 @@ namespace Bug.iOS
 
             await ExecuteMyViewControllerAsync("Check if View is equal to null after creating View", x => x.CheckIfViewEqualsNull(), x => x.CreateView());
             await ExecuteMyViewControllerAsync("Check if View is null pattern after creating View", x => x.CheckIfViewIsNull(), x => x.CreateView());
-            await ExecuteMyViewControllerAsync("Check if View is loaded creating View", x => x.CheckIfViewIsLoaded(), x => x.CreateView());
+            await ExecuteMyViewControllerAsync("Check if View is loaded after creating View", x => x.CheckIfViewIsLoaded(), x => x.CreateView());
 
             await ExecuteMyViewControllerAsync("Check if non-exported View is equal to null", x => x.CheckIfNonExportedViewEqualsNull());
             await ExecuteMyViewControllerAsync("Check if non-exported View is null pattern", x => x.CheckIfNonExportedViewIsNull());
+
             await ExecuteMyViewControllerAsync("Check if exported View is equal to null", x => x.CheckIfExportedViewEqualsNull());
             await ExecuteMyViewControllerAsync("Check if exported View is null pattern", x => x.CheckIfExportedViewIsNull());
+
+            await ExecuteMyViewControllerAsync("Check if NavigationController is equal to null", x => x.CheckIfNavigationControllerEqualsNull());
+            await ExecuteMyViewControllerAsync("Check if NavigationController is null pattern", x => x.CheckIfNavigationControllerIsNull());
+
+            var view1 = new UIView();
+            await ExecuteMyViewControllerAsync("Set non-exported View", x => x.SetNonExportedView(view1));
+
+            var view2 = new UIView();
+            await ExecuteMyViewControllerAsync("Set exported View", x => x.SetExportedView(view2));
         }
 
         private async Task ExecuteAsync(string name, Action action)
