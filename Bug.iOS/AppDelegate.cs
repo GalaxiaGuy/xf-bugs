@@ -11,9 +11,11 @@ namespace Bug.iOS
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
     [Register("AppDelegate")]
-    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
+    public partial class AppDelegate : UIApplicationDelegate
     {
         private MyViewController _viewController;
+
+        public override UIWindow Window { get; set; }
 
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
@@ -24,12 +26,13 @@ namespace Bug.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            Window = new UIWindow(UIScreen.MainScreen.Bounds);
+            Window.RootViewController = new UIViewController();
+            Window.MakeKeyAndVisible();
 
             Test();
 
-            return base.FinishedLaunching(app, options);
+            return true;
         }
 
         private async void Test()
