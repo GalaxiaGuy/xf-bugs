@@ -16,5 +16,13 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.1874" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.2" />
+    <PackageReference Include="Resizetizer.NT" Version="0.2.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resizetizer.NT" />
+    <None Remove="xamarin.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <SharedImage Include="xamarin.svg" BaseSize="484,203" />
   </ItemGroup>
 </Project>
