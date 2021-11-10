@@ -156,7 +156,7 @@
     <PackageReference Include="Xamarin.CommunityToolkit">
       <Version>1.0.2</Version>
     </PackageReference>
-    <PackageReference Include="Resizetizer.NT" Version="0.2.0" />
+    <PackageReference Include="Resizetizer.NT" Version="0.3.0" />
 
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
