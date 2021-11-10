@@ -1,0 +1,22 @@
+﻿name: Build Xamarin.Android app
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup .NET Core SDK 5.0.x
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.x'
+
+    - name: Install dependencies
+      run: nuget restore Bug.sln
+
+    - name: Build
+      run: msbuild Bug.Android/Bug.Android.csproj /t:PackageForAndroid /p:Configuration=Debug

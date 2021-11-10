@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bug.iOS", "Bug.iOS\Bug.iOS.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bug", "Bug\Bug.csproj", "{E9C183BF-0BD2-4800-B38E-FFA3D5D8DAFE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{B7F1041C-9925-40CE-970A-9FB38DE2D519}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{5AD5BEAB-480B-43C0-87F9-CF5FD3DA523A}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\main.yml = .github\workflows\main.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,5 +74,8 @@ Global
 		{E9C183BF-0BD2-4800-B38E-FFA3D5D8DAFE}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
 		{E9C183BF-0BD2-4800-B38E-FFA3D5D8DAFE}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
 		{E9C183BF-0BD2-4800-B38E-FFA3D5D8DAFE}.AppStore|iPhone.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5AD5BEAB-480B-43C0-87F9-CF5FD3DA523A} = {B7F1041C-9925-40CE-970A-9FB38DE2D519}
 	EndGlobalSection
 EndGlobal
