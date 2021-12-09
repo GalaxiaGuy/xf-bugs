@@ -22,6 +22,8 @@ namespace Bug.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            var resources = new ColorResources();
+
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
