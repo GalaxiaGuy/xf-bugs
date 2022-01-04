@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace Bug
@@ -8,6 +9,12 @@ namespace Bug
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = new MainViewModel();
         }
+    }
+
+    public class MainViewModel
+    {
+        public IList<string> Items { get; } = new[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O" };
     }
 }
