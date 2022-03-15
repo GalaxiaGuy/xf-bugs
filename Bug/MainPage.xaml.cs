@@ -10,17 +10,12 @@ namespace Bug
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainViewModel();
+            BindingContext = new Item();
         }
-    }
 
-    public class MainViewModel
-    {
-        public List<Item> Items { get; }
-
-        public MainViewModel()
+        public void Button_Clicked(object sender, EventArgs eventArgs)
         {
-            Items = Enumerable.Range(0, 30).Select(x => new Item()).ToList();
+            BindingContext = new Item();
         }
     }
 
