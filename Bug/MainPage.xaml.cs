@@ -12,6 +12,12 @@ namespace Bug
             InitializeComponent();
             BindingContext = new MainViewModel();
         }
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+            MainCollectionView.ItemSizingStrategy = ItemSizingStrategy.MeasureFirstItem;
+        }
     }
 
     public class MainViewModel
@@ -26,13 +32,11 @@ namespace Bug
 
     public class Item
     {
-        private static readonly Random s_rand = new Random();
-
-        public List<Color> Colors { get; }
+        public List<string> Images { get; }
 
         public Item()
         {
-            Colors = Enumerable.Range(0, 3).Select(x => new Color(s_rand.NextDouble(), s_rand.NextDouble(), s_rand.NextDouble())).ToList();
+            Images = Enumerable.Range(0, 3).Select(x => "https://picsum.photos/id/5/200").ToList();
         }
     }
 }

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Bug.MainPage">
-    <CollectionView ItemsSource="{Binding Items}">
+    <CollectionView ItemsSource="{Binding Items}" x:Name="MainCollectionView">
         <CollectionView.ItemsLayout>
             <GridItemsLayout Span="2" Orientation="Vertical" />
         </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <StackLayout>
-                    <CarouselView Loop="False" ItemsSource="{Binding Colors}" HeightRequest="200" x:Name="Carousel">
+                    <CarouselView Loop="False" ItemsSource="{Binding Images}" HeightRequest="200">
                         <CarouselView.ItemTemplate>
-                            <DataTemplate>
-                                <BoxView Color="{Binding .}" />
+                            <DataTemplate x:DataType="x:String">
+                                <Image Source="{Binding .}" Aspect="AspectFill" />
                             </DataTemplate>
                         </CarouselView.ItemTemplate>
                     </CarouselView>
-                    <Label Text="{Binding Position, Source={x:Reference Carousel}}"/>
                 </StackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>
